@@ -1,10 +1,5 @@
-# filename = 'day1.sample'
-filename = 'day1.input'
-
-with open(filename, 'r') as file:
-    lines = file.readlines()
-
-parsed = [list(map(int, line.strip().split('   '))) for line in lines]
+def parse(input):
+    return [list(map(int, line.strip().split('   '))) for line in input]
 
 def distance(parsed):
     firsts = [x[0] for x in parsed]
@@ -16,7 +11,6 @@ def distance(parsed):
 
     return sum([abs(a - b) for a, b in sorted])
 
-print(distance(parsed))
 
 def similarity(parsed):
     firsts = [x[0] for x in parsed]
@@ -33,4 +27,6 @@ def similarity(parsed):
 
     return score
 
-print(similarity(parsed))
+def run(input):
+    print(distance(input))
+    print(similarity(input))
