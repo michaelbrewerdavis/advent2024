@@ -1,3 +1,5 @@
+#!python
+
 import importlib
 import sys
 
