@@ -52,7 +52,7 @@ def draw(robots):
     for robot in robots:
         (x, y), _ = robot
         
-        print(term.move_xy(x, y) + term.bright_green + "XXX")
+        print(term.move_xy(x, y) + term.bright_green + "X")
 
 def run(input):
     # print([pos for (pos, _) in input])
@@ -61,13 +61,33 @@ def run(input):
     advanced = input
     i = 0
 
-    while True:
-        print(term.clear)
-        print(term.home + str(i))
-        draw(advanced)
-        advanced = [pos for pos in list(map(partial(advance, 1), advanced))]
-        i += 1
-        time.sleep(0.5)
 
-    # q1, q2, q3, q4 = quadrants(advanced)
-    # print(q1*q2*q3*q4)
+    # with term.cbreak():
+    #     val = ''
+    #     while val.lower() != 'q':
+    #         val = term.inkey()         
+    for n in range(6399):
+            print(term.clear)
+            print(term.home + str(i))
+            draw(advanced)
+            advanced = [pos for pos in list(map(partial(advance, 1), advanced))]
+            i += 1
+
+    with term.cbreak():
+        val = ''
+        while val.lower() != 'q':
+            val = term.inkey()
+
+
+# vertical center 13      n % 103 == 13
+# horizontal center at 36 n % 101 == 36
+
+# x = 36
+# >>> while x % 103 != 13:
+# ...   x = x + 101
+# x
+# 6399
+# >>> 6399 % 101
+# 36
+# >>> 6399 % 103
+# 13
